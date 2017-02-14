@@ -341,20 +341,11 @@
             }
             var length = e.pageY - getElementPositionY(volumeBar);
             var percent = length / (volumeBar.offsetHeight);
-            var percentTemp = (1 - percent)/100;
-            var temp2 = 1 - percent;
-            if(1 > temp2 >= 0) {
-                video.volume = temp2;
+            var tempPer = 1 - percent;
+            if(1 > tempPer >= 0) {
+                video.volume = tempPer;
                 volumePoint.style.top = (12 + percent * volumeBar.offsetHeight) + 'px';
-            }/*
-            if(1 > percentTemp >=  0) {
-                if(percentTemp > 0.002){  //经测试，video.colume在0.1 < 0.9这样给值音量分别不明显，
-                    video.volume = percentTemp * 100; //小于0.05时分别明显所以这样给值.
-                }
-                video.volume = percentTemp;
-            }*/
-
-
+            }
         }
 
         function volumeMute() {
