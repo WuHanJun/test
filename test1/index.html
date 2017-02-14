@@ -1,229 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>HTML5-Video-Player</title>
+    <meta charset="UTF-8">
+    <title>HTML5-Video-Player</title>
     <link rel="stylesheet" type="text/css" href="./font/iconfont.css">
-  <style type="text/css">
-      li {
-          list-style: none;
-      }
-      * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-      }
-      .clearfix {
-          display: block;
-          content: '';
-          clear: both;
-      }
+    <style type="text/css">
+        li {
+            list-style: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .clearfix {
+            display: block;
+            content: '';
+            clear: both;
+        }
 
-      #videoContainer {
-          margin-left: 40px;
-      }
-      .videoPlayer{
-          width: 370px;
-          position: relative;
+        #videoContainer {
+            margin-left: 40px;
+        }
+        .videoPlayer{
+            width: 370px;
+            position: relative;
 
-      }
-      #video{
-          margin-top: 0px;
-          border-top-right-radius: 4px;
-          border-top-left-radius: 4px;
-      }
-      #videoControls{
-          width: 370px;
-          margin-top: -5px;
-      }
-      .show{
-          display: inline;
-      }
-      .hide{
-          display: none;
-      }
-      .progress-bar {
-          position: absolute;
-          top: 20px;
-          left: 18px;
-          width: 230px;
-          height: 8px;
-          border-radius: 10px;
-          background: #000;
-          border: 1px solid;
-      }
-       .played-progress-bar {
-          position: absolute;
-          z-index: 2;
-          left: 18px;
-          top: 20px;
-          width: 0;
-          height: 8px;
-          border-radius: 5px;
-          background: rgba(94, 109, 129, 1);
-      }
-      .showProgress{
-          background-color: blue;
-          font-weight: 600;
-          font-size: 20px;
-          line-height: 25px;
-      }
-      .progress-point {
-          position: absolute;
-          z-index: 3;
-          top: 20px;
-          left: 13px;
-          width: 8px;
-          height: 8px;
-          border-radius: 5px;
-          background: rgba(255, 255, 255, 1);
-      }
+        }
+        #video{
+            margin-top: 0px;
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+        }
+        #videoControls{
+            width: 370px;
+            margin-top: -5px;
+        }
+        .show{
+            display: inline;
+        }
+        .hide{
+            display: none;
+        }
+        .progress-bar {
+            position: absolute;
+            top: 20px;
+            left: 18px;
+            width: 230px;
+            height: 8px;
+            border-radius: 10px;
+            background: #000;
+            border: 1px solid;
+        }
+        .played-progress-bar {
+            position: absolute;
+            z-index: 2;
+            left: 18px;
+            top: 20px;
+            width: 0;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(94, 109, 129, 1);
+        }
+        .showProgress{
+            background-color: blue;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 25px;
+        }
+        .progress-point {
+            position: absolute;
+            z-index: 3;
+            top: 20px;
+            left: 13px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 1);
+        }
         .play-icon {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          margin-left: -33px;
-          margin-top: -37px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -33px;
+            margin-top: -37px;
 
         }
 
         .play-icon {
-          width: 60px;
-          height: 60px;
-          border-radius: 260px;
-          border: 4px solid rgba(77,199,223,1);
-          background-color:rgba(0, 175, 209, 1);
+            width: 60px;
+            height: 60px;
+            border-radius: 260px;
+            border: 4px solid rgba(77,199,223,1);
+            background-color:rgba(0, 175, 209, 1);
 
         }
         .trilateral {
-          margin: 20px 22px;
-          width: 0;
-          height: 0;
-          display: block;
-          border-top: 7px solid transparent;
-          border-left: 14px solid rgba(221, 240, 246, 1);
-          border-bottom: 7px solid transparent;
+            margin: 20px 22px;
+            width: 0;
+            height: 0;
+            display: block;
+            border-top: 7px solid transparent;
+            border-left: 14px solid rgba(221, 240, 246, 1);
+            border-bottom: 7px solid transparent;
         }
-      .play-control {
-          width: 49.8px;
-          height: 50px;
-          padding: 13px 0;
-          color: #fff;
-          background-color: rgba(32, 34, 38, 1);
-          float: left;
-          text-align: center;
-          border-bottom-left-radius: 4px;
-          position: relative;
-      }
-      .back-layout {
-          width: 320px;
-          height: 50px;
-          background-color: rgba(29, 48, 55, 1);
-          float: left;
-          border-bottom-right-radius: 4px;
-          position: relative;
-      }
-      .icon-play {
-          color: red;
-          font-size: 44px;
-      }
-      .icon-yinliang {
-          float: right;
-          font-size: 20px;
-          color: #fff;
-          margin: 11px 20px;
+        .play-control {
+            width: 49.8px;
+            height: 50px;
+            padding: 13px 0;
+            color: #fff;
+            background-color: rgba(32, 34, 38, 1);
+            float: left;
+            text-align: center;
+            border-bottom-left-radius: 4px;
+            position: relative;
+        }
+        .back-layout {
+            width: 320px;
+            height: 50px;
+            background-color: rgba(29, 48, 55, 1);
+            float: left;
+            border-bottom-right-radius: 4px;
+            position: relative;
+        }
+        .icon-play {
+            color: red;
+            font-size: 44px;
+        }
+        .icon-yinliang {
+            float: right;
+            font-size: 20px;
+            color: #fff;
+            margin: 11px 20px;
 
-      }
-      .volume-bar {
-          height: 50px;
-          width: 8px;
-          background: rgb(0, 175, 209);
-          margin: 15px auto;
-          border-top-left-radius: 3px;
-          border-top-right-radius: 3px;
+        }
+        .volume-bar {
+            height: 50px;
+            width: 8px;
+            background: rgb(0, 175, 209);
+            margin: 15px auto;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
 
-      }
-      .volume-bar-back {
-          position: absolute;
-          right: 16px;
-          top: -70px;
-          width: 30px;
-          height: 70px;
-          background: rgba(0, 0, 0, .7);
-          display: none;
-      }
-      .volume-control:hover .volume-bar-back {
-          display: block;
-      }
-      .volume-control {
-          float: right;
-          position: relative;
+        }
+        .volume-bar-back {
+            position: absolute;
+            right: 16px;
+            top: -70px;
+            width: 30px;
+            height: 70px;
+            background: rgba(0, 0, 0, .7);
+            display: none;
+        }
+        .volume-control:hover .volume-bar-back {
+            display: block;
+        }
+        .volume-control {
+            float: right;
+            position: relative;
 
-      }
-      .volume-point {
-          display: block;
-          position: absolute;
-          z-index: 1;
-          top: 21px;
-          left: 11px;
-          width: 8px;
-          height: 8px;
-          border-radius: 5px;
-          background: rgba(255, 255, 255, 1);
-          display: table;
-      }
-      #video {
-          display: none;
-      }
-      .play-icon {
-          display: none;
-      }
-      .loading {
-          width: 369.9px;
-          height: 200px;
-      }
-  </style>
+        }
+        .volume-point {
+            display: block;
+            position: absolute;
+            z-index: 1;
+            top: 21px;
+            left: 11px;
+            width: 8px;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 1);
+            display: table;
+        }
+        #video {
+            display: none;
+        }
+        .loading {
+            width: 369.9px;
+            height: 200px;
+            position: relative;
+            z-index:1;
+        }
+    </style>
 </head>
 <body>
 <div class="">
-  <h1>HTML5_Video_Player</h1>
-  <div class="videoPlayer" id="videoContainer">
-    <video id="video"
-           height="208" preload="auto"
+    <h1>HTML5_Video_Player</h1>
+    <div class="videoPlayer" id="videoContainer">
+        <video id="video"
+               height="208" preload="auto"
 
-            > <!--用户能自控制视频音量暂停等-->
-      <source src="movie.ogg" type='video/mp4'>
+                > <!--用户能自控制视频音量暂停等-->
+            <source src="movie.ogg" type='video/mp4'>
 
-    </video>
-      <img class="loading" src="./zhangyu.gif" alt=""/>
-    <div class="play-icon">
-      <div class="trilateral"></div>
-    </div>
-    <div id="videoControls" class="clearfix">
-
-        <div class="play-control">
-            <span class="iconfont icon-stop hide"></span>
-            <span class="iconfont icon-bofang"></span>
+        </video>
+        <img class="loading" src="./zhangyu.gif" alt=""/>
+        <div class="play-icon">
+            <div class="trilateral"></div>
         </div>
-        <div class="back-layout">
-            <div class="progress-control">
-                <div class="progress-bar"></div>
-                <div class="played-progress-bar"></div>
-                <div class="progress-point"></div>
+        <div id="videoControls" class="clearfix">
+
+            <div class="play-control">
+                <span class="iconfont icon-stop hide"></span>
+                <span class="iconfont icon-bofang"></span>
             </div>
-            <div class="volume-control clearfix">
-                <span class="iconfont icon-yinliang"></span>
-                <div class="volume-bar-back">
-                    <div class="volume-bar"></div>
-                    <span class="volume-point"></span>
+            <div class="back-layout">
+                <div class="progress-control">
+                    <div class="progress-bar"></div>
+                    <div class="played-progress-bar"></div>
+                    <div class="progress-point"></div>
+                </div>
+                <div class="volume-control clearfix">
+                    <span class="iconfont icon-yinliang"></span>
+                    <div class="volume-bar-back">
+                        <div class="volume-bar"></div>
+                        <span class="volume-point"></span>
+                    </div>
+
                 </div>
 
             </div>
 
         </div>
-
     </div>
-  </div>
 </div>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
 <script>
@@ -255,10 +254,11 @@
                 this.showVideo();
             },
             showVideo: function () {
-                video.oncanplay = function () {
-                    console.log(1, this, loadImg)
-                    this.style.display = 'block';
+                if(video.oncanplay = true) {
+                    //console.log(1, this, loadImg)
                     loadImg.style.display = 'none';
+                    video.style.display = 'block';
+
                 }
             },
             operateControls: function(){
@@ -329,6 +329,7 @@
             var percent = length / progressBar.offsetWidth;
             console.log(percent, 1, video.duration);
             playedProgress.style.width = percent * (progressBar.offsetWidth) + "px";
+            console.log(percent * video.duration);
             video.currentTime = percent * video.duration;
             progressFlag = setInterval(getProgress, 60);
         }
@@ -403,8 +404,6 @@
             return y;
         }
     }(this, document))
-
-
 
 </script>
 </body>
